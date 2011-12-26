@@ -1,0 +1,15 @@
+# node_modules should be installed by npm.
+# Run command 'npm install -d'
+node_modules/
+
+# Backup, temporary, old, log files
+*~
+*.swp
+*.bak
+*.tmp
+*.old
+*.log
+
+# OS meta files
+.DS_Store
+Thumbs.db
