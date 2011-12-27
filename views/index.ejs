@@ -4,9 +4,56 @@
   <meta charset="UTF-8" />
   <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/ws-chat-client.js"></script>
 </head>
 <body>
   <h1><%= title %></h1>
   <p>Welcome to <%= title %></p>
+
+  <section id="info">
+    <p>Let's join the chat!</p>
+  </section>
+
+  <section id="join">
+    <form action="" id="join_form">
+      <fieldset>
+        <legend>Join</legend>
+        <label for="name">Name: </label><input type="text" id="name" name="name" />
+        <input type="submit" value="Join" />
+      </fieldset>
+    </form>
+  </section>
+
+  <section id="joined">
+    <p>Your are joined as <span id=screen_name></span>. <a href="#" id="leave">Leave</a></p>
+  </section>
+
+  <section id="post">
+    <form action="" id="post_form">
+      <fieldset>
+        <legend>Post</legend>
+        <label for="message">Message: </label><input type="text" id="message" name="message" />
+        <input type="submit" value="Post" />
+      </fieldset>
+    </form>
+  </section>
+
+  <section id="log">
+    <div class="log msg_user">
+      <span class="msg_time">2011-12-27 12:34:57</span>
+      <span class="msg_name">screen_name</span>
+      <span class="msg_post">User's post. long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long message.</span>
+    </div>
+    <div class="log msg_user">
+      <span class="msg_time">2011-12-27 12:34:57</span>
+      <span class="msg_name">screen_name</span>
+      <span class="msg_post">User's post.</span>
+    </div>
+    <div class="log msg_system">
+      <span class="msg_time">2011-12-27 12:34:56</span>
+      <span class="msg_sys_message">System message.</span>
+    </div>
+  </section>
 </body>
 </html>

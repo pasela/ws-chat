@@ -1,8 +1,113 @@
 body {
-  padding: 50px;
+  margin: 0px;
+  padding: 1em;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin: 0px;
 }
 
 a {
   color: #00B7FF;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+* + p {
+  margin-top: 0.5em;
+}
+
+form {
+  margin: 0px;
+  padding: 0px;
+}
+
+fieldset {
+  margin: 1em 0px 0px;
+  padding: 0.5em;
+  border: 1px solid gray;
+}
+
+#info {
+  margin: 1.5em 0px 0px;
+  padding: 0.3em;
+}
+
+#joined,
+#post {
+}
+
+#joined p {
+  margin: 1.5em 0px 0px 0px;
+  padding: 0.5em;
+  border: 1px solid gray;
+}
+
+#log {
+  margin: 1.5em 0px 0px 0px;
+  padding: 0px;
+  border: 1px solid gray;
+}
+
+.log {
+  margin: 0px 5px;
+  padding: 5px;
+  border-top: 1px dashed silver;
+}
+
+.log:first-child {
+  border: none;
+}
+
+/*
+.log + .log {
+  border-top: 1px dashed silver;
+}
+*/
+
+.msg_user {
+  display: table;
+}
+
+.msg_system {
+  display: table;
+}
+
+.msg_time {
+  display: table-cell;
+  padding-right: 0.5em;
+  white-space: nowrap;
+  vertical-align: top;
+  color: darkgray;
+}
+
+.msg_name {
+  display: table-cell;
+  vertical-align: top;
+  white-space: nowrap;
+  font-weight: bold;
+  color: steelblue;
+}
+
+.msg_name:after {
+  content: ' : ';
+  margin-right: 0.5em;
+}
+
+.msg_post {
+  display: table-cell;
+  width: 100%;
+  vertical-align: top;
+}
+
+.msg_sys_message {
+  display: table-cell;
+  width: 100%;
+  vertical-align: top;
+  font-weight: bold;
+  color: tomato;
 }
