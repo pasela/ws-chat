@@ -6,6 +6,18 @@
 
 // Page UI object.
 var Page = {
+  info : function (message) {
+    $('#info p').text(message);
+    $('#info').css('background-color', '')
+              .show('highlight', 'slow');
+  },
+
+  notice : function (message) {
+    $('#info p').text(message);
+    $('#info').css('background-color', 'lightsalmon')
+              .show('highlight', {color: 'red'}, 'slow');
+  },
+
   registerHandlers : function () {
     var self = this;
     $('#join_form').submit(function (event) { return self.onJoin(event); });
