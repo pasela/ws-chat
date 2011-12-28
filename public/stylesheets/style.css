@@ -47,6 +47,10 @@ fieldset {
   border: 1px solid gray;
 }
 
+#screen_name {
+  font-weight: bold;
+}
+
 #log {
   margin: 1.5em 0px 0px 0px;
   padding: 0px;
@@ -62,12 +66,6 @@ fieldset {
 .log:first-child {
   border: none;
 }
-
-/*
-.log + .log {
-  border-top: 1px dashed silver;
-}
-*/
 
 .msg_user {
   display: table;
