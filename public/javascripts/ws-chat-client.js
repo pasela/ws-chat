@@ -35,24 +35,44 @@ var Page = {
 
   onPost : function (event) {
     // DUMMY
-    var post = {
+    var msg = {
+      type: 'user',
       time: '2011-12-28 12:34:56',
       name: 'foobar',
       post: 'This is a dummy post.',
     };
 
-    this.addUserPost(post);
+    this.addMessage(msg);
     return false;
   },
 
-  addUserPost : function (post) {
-    var $log = $('<div />').addClass('log msg_user').hide();
-    $log.append($('<span />').addClass('msg_time').text(post.time));
-    $log.append($('<span />').addClass('msg_name').text(post.name));
-    $log.append($('<span />').addClass('msg_post').text(post.post));
+  addMessage : function (msg) {
+    var $log = null;
+    if (msg.type === 'system')
+      $log = this.createSystemLog(msg);
+    else if (msg.type === 'user')
+      $log = this.createUserLog(msg);
 
-    $('#log').prepend($log);
-    $log.show('drop', {direction: 'up'}, 'fast');
+    if ($log) {
+      $log.hide();
+      $('#log').prepend($log);
+      $log.show('drop', {direction: 'up'}, 'fast');
+    }
+  },
+
+  createSystemLog : function (msg) {
+    var $log = $('<div />').addClass('log msg_system');
+    $log.append($('<span />').addClass('msg_time').text(msg.time));
+    $log.append($('<span />').addClass('msg_sys_message').text(msg.message));
+    return $log;
+  },
+
+  createUserLog : function (msg) {
+    var $log = $('<div />').addClass('log msg_user');
+    $log.append($('<span />').addClass('msg_time').text(msg.time));
+    $log.append($('<span />').addClass('msg_name').text(msg.name));
+    $log.append($('<span />').addClass('msg_post').text(msg.post));
+    return $log;
   }
 };
 
