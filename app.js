@@ -5,6 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , chat = require('./ws-chat-server.js');
 
 var app = module.exports = express.createServer();
 
@@ -33,4 +34,9 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 app.listen(3000);
+
+// WebSocket
+var wschat = chat.createServer();
+wschat.attach(app);
+
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

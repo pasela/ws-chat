@@ -99,6 +99,7 @@ var Page = {
     this.socket.on('connected', function (data) { return self.onConnected(data); });
     this.socket.on('joined', function (data) { return self.onJoined(data); });
     this.socket.on('left', function (data) { return self.onLeft(data); });
+    this.socket.on('posted', function (data) { return self.onPosted(data); });
     this.socket.on('new-message', function (data) { return self.onNewMessage(data); });
   },
 
@@ -111,9 +112,9 @@ var Page = {
 
   onConnected : function (data) {
     if (data.logs) {
-      for (var i = 0; i < data.logs.length; i++) {
-        this.addMessage(data.logs[i], false);
-      }
+      data.logs.forEach(function (log) {
+        this.addMessage(log, false);
+      }, this);
       $('#log').fadeIn();
     }
   },
@@ -144,7 +145,7 @@ var Page = {
 
   onLeave : function (event) {
     if (!this.joined) return false;
-    this.socket.emit('leave', { name: this.session.name });
+    this.socket.emit('leave', {});
     return false;
   },
 
@@ -163,21 +164,26 @@ var Page = {
     }
   },
 
-  onNewMessage : function (msg) {
-    this.addMessage(msg);
-  },
-
   onPost : function (event) {
     var message = $('#message').val();
     if (this.joined && message !== null && message.length) {
       var data = {
-        name: this.session.name,
         message: message
       };
       this.socket.emit('post', data);
     }
 
     return false;
+  },
+
+  onPosted : function (data) {
+    if (data.error) {
+      this.notice(data.error);
+    }
+  },
+
+  onNewMessage : function (msg) {
+    this.addMessage(msg);
   },
 
   addMessage : function (msg, effect) {
