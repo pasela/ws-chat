@@ -50,7 +50,7 @@ var Page = {
   },
 
   onConnected : function (data) {
-    if (data.logs) {
+    if (data.logs && data.logs.length) {
       data.logs.forEach(function (log) {
         this.addMessage(log, false);
       }, this);
@@ -153,6 +153,9 @@ var Page = {
         overflow: 'scroll'
       });
     }
+
+    if (!$log.is(':visible'))
+      $log.fadeIn();
   },
 
   createLog : function (msg) {
