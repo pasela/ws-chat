@@ -59,6 +59,8 @@ var Page = {
   },
 
   onJoin : function (event) {
+    if (this.joined) return false;
+
     var name = $('#name').val();
     if (name !== null && name.length)
       this.socket.emit('join', { name: name });
@@ -78,6 +80,7 @@ var Page = {
       $('#screen_name').text(data.name);
       $('.left').fadeOut('fast', function () {
         $('.joined').fadeIn('fast');
+        $('#message').focus();
       });
     }
   },
@@ -99,6 +102,7 @@ var Page = {
       $('#screen_name').text('');
       $('.joined').fadeOut('fast', function () {
         $('.left').fadeIn('fast');
+        $('#name').focus();
       });
     }
   },
@@ -118,6 +122,8 @@ var Page = {
   onPosted : function (data) {
     if (data.error) {
       this.notice(data.error);
+    } else {
+      $('#message').val('');
     }
   },
 
