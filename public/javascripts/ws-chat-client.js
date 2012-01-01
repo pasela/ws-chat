@@ -1,11 +1,16 @@
 /**
  * ws-chat-client.js
  *
- * depends on jQuery and jQuery UI.
+ * depends on
+ * - jQuery
+ * - jQuery UI
+ * - socket.io(WebSocket)
+ * - Moment.js
  */
 
 // Page UI object.
 var Page = {
+  timeFormat : 'YYYY-MM-DD HH:mm:ss',
   socket : null,
   joined : false,
   session : {},
@@ -154,17 +159,21 @@ var Page = {
 
   createSystemLog : function (msg) {
     var $log = $('<div />').addClass('log msg_system');
-    $log.append($('<span />').addClass('msg_time').text(msg.time));
+    $log.append($('<span />').addClass('msg_time').text(this.formatTimestamp(msg.time)));
     $log.append($('<span />').addClass('msg_sys_message').text(msg.message));
     return $log;
   },
 
   createUserLog : function (msg) {
     var $log = $('<div />').addClass('log msg_user');
-    $log.append($('<span />').addClass('msg_time').text(msg.time));
+    $log.append($('<span />').addClass('msg_time').text(this.formatTimestamp(msg.time)));
     $log.append($('<span />').addClass('msg_name').text(msg.name));
     $log.append($('<span />').addClass('msg_post').text(msg.message));
     return $log;
+  },
+
+  formatTimestamp : function (time) {
+    return moment(time).format(this.timeFormat);
   }
 };
 
