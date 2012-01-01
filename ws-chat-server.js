@@ -51,14 +51,18 @@ WSChatServer.prototype = {
     var res = {};
     if (data.name == null) {
       res.error = 'Please enter user name.';
+      socket.emit('joined', res);
+      return;
     } else if (data.name in this.users) {
       res.error = 'User name "' + data.name + '" already used.';
-    } else {
-      res.name = data.name;
+      socket.emit('joined', res);
+      return;
     }
 
     var self = this;
     socket.set('name', data.name, function () {
+      self.users[data.name] = {};
+      res.name = data.name;
       socket.emit('joined', res);
 
       var msg = self.createJoinMessage(data.name);
