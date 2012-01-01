@@ -37,7 +37,7 @@ WSChatServer.prototype = {
     var self = this;
     socket.get('name', function (err, name) {
       var res = {};
-      if (!err) {
+      if (!err && name in self.users) {
         delete self.users[name];
 
         var msg = self.createLeaveMessage(name);
